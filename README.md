@@ -222,9 +222,6 @@ Hier den Inhalt von [`form-embeds/886-radio-kontaktformular.html`](./form-embeds
 </p>
 ```
 
-> **Optional (falls im Radiospot eine Aktion genannt wird):** Ein Aktions-/Rabatthinweis kann als
-> hervorgehobene Box oberhalb des Formulars ergänzt werden. Text folgt bei Bedarf vom Auftraggeber.
-
 ## Wireframe-Übersicht
 
 ```
