@@ -35,8 +35,16 @@ Die fertigen Einbettungs-Blöcke liegen im Ordner [`/video-embeds/`](./video-emb
 
 ## Technische Hinweise
 
-- **Einbindung:** Jeder Block ist ein vollständiger HTML/JS-Schnipsel. In WordPress am besten als
-  **Custom HTML Block** direkt über dem bestehenden Formular-Block einfügen.
+- **Einbindung — freie Wahl der Methode:** Wir liefern den klassischen Vimeo-Einbettungscode als
+  sofort einsetzbare Variante mit (Custom HTML Block, direkt über dem Formular). Das ist aber
+  **nicht zwingend**: Falls eure WordPress-Instanz eine einfachere Möglichkeit bietet, ein Video
+  direkt über die **Vimeo-URL** einzubinden (z.B. per URL-/oEmbed-Einbettung oder einem
+  Video-Block), nutzt gerne den Weg, den ihr für die Seite am besten haltet. Die reinen
+  Video-URLs findet ihr in der Tabelle oben unter „Video (Vimeo)" bzw. hier:
+  - Seite 1: https://vimeo.com/1211289737
+  - Seite 2: https://vimeo.com/1211292258
+  - Seite 3: https://vimeo.com/1211293050
+  - Seite 4: https://vimeo.com/1211286631
 - **Responsiv:** Das Video ist im Seitenverhältnis 16:9 und skaliert automatisch auf mobile
   Breiten (`padding-top: 56.25%`-Technik). Kein festes Höhen-Handling nötig.
 - **Breite:** Standardmäßig **volle Inhaltsbreite** (wie das Formular). Wenn ihr das Video lieber
