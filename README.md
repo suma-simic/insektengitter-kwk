@@ -1,4 +1,4 @@
-# Agentur-Nachtrag: Video-Einbindung auf den 4 Empfehlungs-Landingpages
+# Agentur-Nachtrag: Videos + neue Radio-Landingpage
 
 **Kunde:** Grünefeldt Insektengitter
 **Domain:** insektengitter.at
@@ -9,12 +9,23 @@
 
 ## Worum geht es?
 
-Die 4 Empfehlungs-Landingpages (Kunden werben Kunden) sind bereits live und funktionieren.
-Neu ist **ein kurzes Video pro Seite**, das jeweils **oberhalb** des bestehenden Formulars
-(bzw. der Teilen-Box) eingebunden werden soll.
+Zwei Punkte in diesem Nachtrag:
 
-Es ändert sich **nichts** an den bestehenden Formularen, Scripts oder Texten. Es kommt pro
-Seite lediglich **ein neuer Custom-HTML-Block mit dem Video** hinzu.
+1. **Video-Einbindung** auf den 4 bestehenden Empfehlungs-Landingpages (Kunden werben Kunden) —
+   je ein kurzes Video **oberhalb** des Formulars (bzw. der Teilen-Box). Siehe unten „Teil 1".
+2. **Neue Landingpage `/886`** für eine Radiowerbung auf Radio 886, mit eigenem
+   Zoho-Kontaktformular. Siehe unten „Teil 2".
+
+An den bestehenden Formularen, Scripts oder Texten ändert sich **nichts** — beide Punkte sind
+rein additiv.
+
+---
+
+# Teil 1 — Video-Einbindung (4 Empfehlungs-Landingpages)
+
+Die 4 Empfehlungs-Landingpages sind bereits live. Neu ist **ein kurzes Video pro Seite**, das
+jeweils **oberhalb** des bestehenden Formulars (bzw. der Teilen-Box) eingebunden werden soll —
+als **neuer Custom-HTML-Block**.
 
 ---
 
@@ -146,6 +157,89 @@ Als **neuen Custom-HTML-Block** einfügen — **direkt über** dem bestehenden S
 │  [Block 2] Script-Block (bestehend):         │
 │            Einleitungstext + "So geht's"-Box │
 │            + Datenschutz + Zoho-Formular     │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+# Teil 2 — Neue Radio-Landingpage `/886`
+
+## Worum geht es?
+
+Radio 886 (radio886.at) spielt einen Werbespot für Grünefeldt Insektengitter aus und verweist die
+Hörer auf die kurze, gut merkbare Adresse **`insektengitter.at/886`**. Auf dieser neuen Seite füllen
+die Interessenten ein Kontaktformular aus.
+
+**Wichtig zum Verständnis:** Die Hörer tippen die Adresse **direkt** ein (kein Klick mit Tracking-
+Parametern in der URL). Deshalb sind alle Tracking-Werte (UTM + Lead-Quelle / Leadgenerierungs-Art /
+Location) bereits **fest im Zoho-Formular hinterlegt**. Die Agentur muss dazu **nichts** einstellen —
+einfach den Formular-Block einbinden.
+
+## Seite anlegen
+
+- **Neue WordPress-Seite** mit dem Pfad **`/886`** (URL: `https://insektengitter.at/886`).
+- Formular-Block: kompletten Inhalt von
+  [`form-embeds/886-radio-kontaktformular.html`](./form-embeds/886-radio-kontaktformular.html)
+  als **Custom HTML Block** einfügen. Das Zoho-Skript passt die Formularhöhe automatisch an.
+
+## Seitenaufbau (Textvorschlag — bitte an das Website-Design anpassen)
+
+Die folgenden Texte sind ein Vorschlag im Stil der übrigen Seiten. Formulierung/Design gern anpassen.
+
+### Block 1: Überschrift + Einleitung (mit Radio-Bezug)
+
+```html
+<h1>Insektenschutz nach Maß – direkt vom Hersteller</h1>
+<h2>Sie haben von uns bei Radio 886 gehört? Herzlich willkommen!</h2>
+<p>
+  Fliegengitter, Insektenschutz-Türen und Lichtschachtabdeckungen – maßgefertigt,
+  montiert und aus einer Hand. Fordern Sie hier ganz unverbindlich Ihr persönliches
+  Angebot an. Wir melden uns zeitnah bei Ihnen.
+</p>
+```
+
+### Block 2: Formular (Custom HTML Block)
+
+Hier den Inhalt von [`form-embeds/886-radio-kontaktformular.html`](./form-embeds/886-radio-kontaktformular.html) einfügen.
+
+### Block 3: „So geht's weiter"
+
+```html
+<h3>So geht's weiter:</h3>
+<p>1. <strong>Formular ausfüllen:</strong> Ein paar Angaben genügen.</p>
+<p>2. <strong>Wir melden uns:</strong> Wir nehmen zeitnah Kontakt mit Ihnen auf.</p>
+<p>3. <strong>Beratung &amp; Aufmaß:</strong> Sie erhalten Ihr unverbindliches Angebot.</p>
+```
+
+### Block 4: Kontakt
+
+```html
+<p>
+  Bei Fragen erreichen Sie uns per E-Mail an
+  <a href="mailto:office@insektengitter.at">office@insektengitter.at</a>
+  oder telefonisch unter
+  <a href="tel:+4322826022">+43 2282 60222</a>.
+</p>
+```
+
+> **Optional (falls im Radiospot eine Aktion genannt wird):** Ein Aktions-/Rabatthinweis kann als
+> hervorgehobene Box oberhalb des Formulars ergänzt werden. Text folgt bei Bedarf vom Auftraggeber.
+
+## Wireframe-Übersicht
+
+```
+┌──────────────────────────────────────────────┐
+│           HEADER / NAVIGATION                │
+├──────────────────────────────────────────────┤
+│  [Block 1] H1 + Radio-Bezug + Einleitung     │
+├──────────────────────────────────────────────┤
+│  [Block 2] Zoho-Kontaktformular (Custom HTML)│
+├──────────────────────────────────────────────┤
+│  [Block 3] "So geht's weiter" (3 Schritte)   │
+├──────────────────────────────────────────────┤
+│  [Block 4] Kontakt                           │
+├──────────────────────────────────────────────┤
+│           FOOTER                             │
 └──────────────────────────────────────────────┘
 ```
 
