@@ -1,23 +1,26 @@
-# Agentur-Nachtrag: Videos + neue Radio-Landingpage
+# Agentur-Nachtrag: Videos, Radio-Landingpage + Karriere-Kurzbewerbung
 
 **Kunde:** Grünefeldt Insektengitter
 **Domain:** insektengitter.at
 **CMS:** WordPress (bestehende Kundeninstanz)
-**Datum:** 2026-07-20
+**Datum:** 2026-07-20 (Teil 1 + 2) · 2026-07-30 (Teil 3)
 
 ---
 
 ## Worum geht es?
 
-Zwei Punkte in diesem Nachtrag:
+Drei Punkte in diesem Nachtrag:
 
 1. **Video-Einbindung** auf den 4 bestehenden Empfehlungs-Landingpages (Kunden werben Kunden) —
    je ein kurzes Video **oberhalb** des Formulars (bzw. der Teilen-Box). Siehe unten „Teil 1".
 2. **Neue Landingpage `/886`** für eine Radiowerbung auf Radio 886, mit eigenem
    Zoho-Kontaktformular. Siehe unten „Teil 2".
+3. **Karriere-Kurzbewerbung** (2026-07-30): Video + Bewerbungsformular auf der bestehenden Seite
+   `/karriere/` und eine **neue Dankeseite `/danke-bewerbung`**. Siehe unten „Teil 3".
 
-An den bestehenden Formularen, Scripts oder Texten ändert sich **nichts** — beide Punkte sind
-rein additiv.
+Bei Teil 1 und 2 ändert sich an bestehenden Formularen, Scripts oder Texten **nichts** — beide
+Punkte sind rein additiv. Teil 3 ist ebenfalls im Kern additiv; dort wird zusätzlich **ein
+bestehender Textblock innerhalb der Karriere-Seite nach unten verschoben** (im Detail beschrieben).
 
 ---
 
@@ -239,6 +242,192 @@ Hier den Inhalt von [`form-embeds/886-radio-kontaktformular.html`](./form-embeds
 │           FOOTER                             │
 └──────────────────────────────────────────────┘
 ```
+
+---
+
+# Teil 3 — Karriere-Kurzbewerbung (Nachtrag 2026-07-30)
+
+## Worum geht es?
+
+Bewerber sollen sich direkt auf der Karriere-Seite in unter zwei Minuten bewerben können — **ohne
+Lebenslauf und ohne Anschreiben**. Dafür kommen auf die **bestehende** Seite `/karriere/` ein kurzes
+Video und darunter ein Zoho-Kurzbewerbungsformular. Nach dem Absenden landet der Bewerber auf einer
+**neuen Dankeseite `/danke-bewerbung`**.
+
+Zwei Aufgaben also:
+
+| # | Aufgabe | Seite |
+|---|---------|-------|
+| A | Video + Formular + Texte einfügen, einen bestehenden Textblock nach unten verschieben | `/karriere/` (**bestehend**) |
+| B | Neue Seite mit kurzem Bestätigungstext anlegen | `/danke-bewerbung` (**neu**) |
+
+---
+
+## Aufgabe A · Bestehende Seite `/karriere/` erweitern
+
+Die Seite bleibt inhaltlich vollständig erhalten. Oben kommen vier neue Blöcke dazu, und der lange
+„35 Jahre"-Text wandert vom Seitenanfang ans Seitenende.
+
+### Neue Blockreihenfolge
+
+```
+┌──────────────────────────────────────────────┐
+│  [Block 1] Header-Bild + H1 "Karriere"       │  bestehend
+├──────────────────────────────────────────────┤
+│  [Block 2] Sub-Headline                      │  NEU
+├──────────────────────────────────────────────┤
+│  [Block 3] VIDEO (Custom HTML)               │  NEU
+├──────────────────────────────────────────────┤
+│  [Block 4] H2 "Kurzbewerbung" + CTA-Text     │  NEU
+├──────────────────────────────────────────────┤
+│  [Block 5] Zoho-Formular (Custom HTML)       │  NEU
+├──────────────────────────────────────────────┤
+│  [Block 6] Bewerbungs-Hinweis Fabian Hofmann │  bestehend,
+│            / "Aktuelle Stellenanzeigen" PDFs │  unverändert
+│            / Adresse + Öffnungszeiten        │
+│            / Formular "Vertriebspartner"     │
+├──────────────────────────────────────────────┤
+│  [Block 7] "Über uns als Arbeitgeber"        │  VERSCHOBEN
+│            (der bisherige 35-Jahre-Text)     │  vom Seitenanfang
+├──────────────────────────────────────────────┤
+│           FOOTER                             │
+└──────────────────────────────────────────────┘
+```
+
+### Block 2 · Sub-Headline (NEU, direkt unter der H1)
+
+```html
+<h2>
+  Seit 35 Jahren fertigen, liefern und montieren wir Insektenschutz – mit Menschen,
+  die oft von Anfang an dabei sind. Bei uns ist das keine Saisonarbeit, sondern ein
+  ganzjähriger Job mit Perspektive.
+</h2>
+```
+
+Falls euer Theme H2 sehr groß setzt, gern als hervorgehobener Absatz (Lead-Text) statt als H2 —
+entscheidend ist die Position direkt unter der H1, nicht das Tag.
+
+### Block 3 · Video (NEU, Custom HTML Block)
+
+Datei: [`video-embeds/06_karriere.html`](./video-embeds/06_karriere.html) (Vimeo `1214165107`)
+
+Kompletten Datei-Inhalt als **Custom HTML Block** einfügen — zwischen Sub-Headline und
+Formular-Überschrift. Wie in Teil 1: 16:9, responsiv, kein Autoplay, Breite nach eurem Ermessen.
+Auch hier gilt die freie Wahl der Methode — die reine Video-URL lautet
+https://vimeo.com/1214165107.
+
+### Block 4 · Überschrift + CTA (NEU)
+
+```html
+<h2>Kurzbewerbung</h2>
+<p>
+  <strong>Jetzt unkompliziert bewerben!</strong><br>
+  Kein Lebenslauf, kein Anschreiben. Senden Sie uns einfach Ihre Kontaktdaten –
+  wir melden uns telefonisch bei Ihnen.
+</p>
+```
+
+### Block 5 · Zoho-Formular (NEU, Custom HTML Block)
+
+Datei: [`form-embeds/karriere-kurzbewerbung.html`](./form-embeds/karriere-kurzbewerbung.html)
+
+Kompletten Datei-Inhalt als **Custom HTML Block** direkt unter dem CTA-Text einfügen.
+
+- Das Skript erzeugt den iFrame selbst — es muss **kein zusätzlicher Zoho-Code** eingefügt werden.
+- Die Formularhöhe passt sich automatisch an den Inhalt an. Bitte **keine feste Höhe** über Theme
+  oder CSS erzwingen, sonst wird das Formular abgeschnitten.
+- UTM-Parameter und Referrer werden automatisch angehängt. An der Formular-URL muss **nichts**
+  ergänzt werden.
+
+> **Bitte nicht verwechseln:** Weiter unten auf derselben Seite steht bereits das Formular
+> „Vertriebspartner werden". Das ist ein **anderes** Formular und bleibt unverändert stehen. Die
+> neue Überschrift „Kurzbewerbung" trennt beide klar voneinander.
+
+### Block 7 · „Über uns als Arbeitgeber" (VERSCHOBEN ans Seitenende)
+
+Dieser Text steht aktuell direkt unter der H1 und wird dort durch die neue Sub-Headline ersetzt. Er
+soll **nicht gelöscht**, sondern ans Ende der Seite verschoben werden:
+
+```html
+<h2>Über uns als Arbeitgeber</h2>
+<p>
+  Die Grünefeldt Insektengitter GmbH gibt es bereits seit 35 Jahren – der Personalstamm
+  hat sich stetig vergrößert und einige Mitarbeiter sind „von Anfang an“ dabei.
+</p>
+<p>
+  Unsere Mitarbeiter sind sowohl der Schlüssel zum Erfolg als auch gleichzeitig unsere
+  Visitenkarte nach außen. Durch sie wird das Thema Insektengitter zur ganzjährigen
+  Beschäftigung und macht unser stetiges Wachstum und unseren Erfolg aus.
+</p>
+```
+
+> In diesem Textblock sind zwei kleine sprachliche Korrekturen gegenüber der aktuellen Live-Version
+> schon eingearbeitet („Durch sie" statt „Durch Sie", „unser stetiges Wachstum" statt „unseren
+> stetigen Wachstum"). Bitte die Fassung von hier übernehmen.
+
+---
+
+## Aufgabe B · Neue Seite `/danke-bewerbung` anlegen
+
+Neue WordPress-Seite mit dem Pfad **`/danke-bewerbung`** (URL:
+`https://insektengitter.at/danke-bewerbung`). Kein Formular, kein Video — bewusst kurz, im
+bestehenden Website-Design mit Header und Footer wie überall.
+
+### Seiteninhalt (vollständig)
+
+```html
+<h1>Vielen Dank für Ihre Bewerbung!</h1>
+
+<p>
+  Ihre Kurzbewerbung wurde erfolgreich übermittelt. Wir melden uns so schnell wie möglich
+  telefonisch bei Ihnen, um alle weiteren Details persönlich zu besprechen.
+</p>
+
+<p>
+  <strong>Ihr Ansprechpartner:</strong><br>
+  Fabian Hofmann<br>
+  Telefon: <a href="tel:+4322826022">+43 2282 / 60222</a>
+</p>
+```
+
+### Vorgaben zur Seite
+
+| Punkt | Vorgabe |
+|-------|---------|
+| URL-Pfad | genau `/danke-bewerbung` — auf diese Adresse wird die Formular-Weiterleitung gesetzt |
+| Navigation | **nicht** ins Menü aufnehmen — die Seite wird nur nach dem Absenden erreicht |
+| Suchmaschinen | auf **`noindex`** setzen (z.B. per SEO-Plugin) |
+| Telefonnummer | als klickbarer `tel:`-Link, damit Bewerber am Handy direkt zurückrufen können |
+
+```
+┌──────────────────────────────────────────────┐
+│           HEADER / NAVIGATION                │
+├──────────────────────────────────────────────┤
+│  H1 "Vielen Dank für Ihre Bewerbung!"        │
+├──────────────────────────────────────────────┤
+│  Bestätigungstext (2 Sätze)                  │
+├──────────────────────────────────────────────┤
+│  Ansprechpartner Fabian Hofmann + Telefon    │
+├──────────────────────────────────────────────┤
+│           FOOTER                             │
+└──────────────────────────────────────────────┘
+```
+
+---
+
+## Weiterleitung auf die Dankeseite — macht der Auftraggeber
+
+Die Weiterleitung nach dem Absenden wird **nicht** im Website-Code gesetzt, sondern im
+Zoho-Forms-Backend („Thank You Page & Redirection"). Das übernimmt der Auftraggeber.
+
+**Reihenfolge:**
+
+1. Ihr legt `/danke-bewerbung` an und gebt kurz Bescheid, sobald die Seite live ist.
+2. Der Auftraggeber schaltet daraufhin die Weiterleitung im Formular.
+3. Gemeinsamer Test: Formular auf `/karriere/` absenden und prüfen, ob die Dankeseite erscheint.
+
+Solange Schritt 2 nicht erfolgt ist, zeigt das Formular weiter seine Standard-Bestätigung direkt im
+eingebetteten Bereich an — es geht also nichts verloren, falls sich die Seite verzögert.
 
 ---
 
