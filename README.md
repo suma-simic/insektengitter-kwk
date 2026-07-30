@@ -285,7 +285,6 @@ Die Seite bleibt inhaltlich vollständig erhalten. Oben kommen vier neue Blöcke
 │  [Block 6] Bewerbungs-Hinweis Fabian Hofmann │  bestehend,
 │            / "Aktuelle Stellenanzeigen" PDFs │  unverändert
 │            / Adresse + Öffnungszeiten        │
-│            / Formular "Vertriebspartner"     │
 ├──────────────────────────────────────────────┤
 │  [Block 7] "Über uns als Arbeitgeber"        │  VERSCHOBEN
 │            (der bisherige 35-Jahre-Text)     │  vom Seitenanfang
@@ -336,12 +335,10 @@ Kompletten Datei-Inhalt als **Custom HTML Block** direkt unter dem CTA-Text einf
 - Das Skript erzeugt den iFrame selbst — es muss **kein zusätzlicher Zoho-Code** eingefügt werden.
 - Die Formularhöhe passt sich automatisch an den Inhalt an. Bitte **keine feste Höhe** über Theme
   oder CSS erzwingen, sonst wird das Formular abgeschnitten.
-- UTM-Parameter und Referrer werden automatisch angehängt. An der Formular-URL muss **nichts**
-  ergänzt werden.
-
-> **Bitte nicht verwechseln:** Weiter unten auf derselben Seite steht bereits das Formular
-> „Vertriebspartner werden". Das ist ein **anderes** Formular und bleibt unverändert stehen. Die
-> neue Überschrift „Kurzbewerbung" trennt beide klar voneinander.
+- Der Referrer wird automatisch vom Skript mitgeschickt. Die UTM-Werte (`utm_source`, `utm_medium`,
+  `utm_campaign`) sind dagegen **fest als versteckte Feldwerte im Zoho-Formular hinterlegt** (wie
+  bei der Radio-886-Landingpage) — nicht aus der Seiten-URL ausgelesen. An der Formular-URL selbst
+  müsst ihr nichts ergänzen.
 
 ### Block 7 · „Über uns als Arbeitgeber" (VERSCHOBEN ans Seitenende)
 
