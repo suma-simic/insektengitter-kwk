@@ -1,15 +1,15 @@
-# Agentur-Nachtrag: Videos, Radio-Landingpage + Karriere-Kurzbewerbung
+# Agentur-Nachtrag: Videos, Radio-Landingpage, Karriere-Kurzbewerbung + Bugfix Empfehler-ID
 
 **Kunde:** Grünefeldt Insektengitter
 **Domain:** insektengitter.at
 **CMS:** WordPress (bestehende Kundeninstanz)
-**Datum:** 2026-07-20 (Teil 1 + 2) · 2026-07-30 (Teil 3)
+**Datum:** 2026-07-20 (Teil 1 + 2) · 2026-07-30 (Teil 3) · 2026-08-04 (Teil 4, dringend)
 
 ---
 
 ## Worum geht es?
 
-Drei Punkte in diesem Nachtrag:
+Vier Punkte in diesem Nachtrag:
 
 1. **Video-Einbindung** auf den 4 bestehenden Empfehlungs-Landingpages (Kunden werben Kunden) —
    je ein kurzes Video **oberhalb** des Formulars (bzw. der Teilen-Box). Siehe unten „Teil 1".
@@ -17,10 +17,15 @@ Drei Punkte in diesem Nachtrag:
    Zoho-Kontaktformular. Siehe unten „Teil 2".
 3. **Karriere-Kurzbewerbung** (2026-07-30): Video + Bewerbungsformular auf der bestehenden Seite
    `/karriere/` und eine **neue Dankeseite `/danke-bewerbung`**. Siehe unten „Teil 3".
+4. **Bugfix Empfehler-ID** (2026-08-04, **dringend**, laufende E-Mail-Kampagne): Ein-Zeilen-Fix in
+   zwei bestehenden Scripts, weil die Empfehler-ID unter bestimmten Link-Varianten verloren geht.
+   Siehe unten „Teil 4".
 
 Bei Teil 1 und 2 ändert sich an bestehenden Formularen, Scripts oder Texten **nichts** — beide
 Punkte sind rein additiv. Teil 3 ist ebenfalls im Kern additiv; dort wird zusätzlich **ein
 bestehender Textblock innerhalb der Karriere-Seite nach unten verschoben** (im Detail beschrieben).
+Teil 4 ist ein **reiner Austausch** von zwei bereits eingebundenen Script-Blöcken, sonst ändert
+sich nichts an den betroffenen Seiten.
 
 ---
 
@@ -425,6 +430,37 @@ Zoho-Forms-Backend („Thank You Page & Redirection"). Das übernimmt der Auftra
 
 Solange Schritt 2 nicht erfolgt ist, zeigt das Formular weiter seine Standard-Bestätigung direkt im
 eingebetteten Bereich an — es geht also nichts verloren, falls sich die Seite verzögert.
+
+---
+
+# Teil 4 — Bugfix Empfehler-ID (Nachtrag 2026-08-04, dringend)
+
+## Worum geht es?
+
+Auf zwei bereits live eingebauten Seiten wird die Empfehler-ID (`REF-xxxxx`) manchmal nicht mehr
+korrekt ins Formular übernommen: Wenn die REF-ID über das URL-Fragment (`#REF-05036`) reinkommt
+und danach noch weitere Zeichen angehängt sind — zum Beispiel Tracking-Parameter, die unser
+E-Mail-Marketing-Tool automatisch an Links anhängt (`#REF-05036&zma_cid=...&zma_src=...`) — hat
+das bisherige Script die komplette Zeichenkette statt nur der REF-ID übernommen. Die nachgelagerte
+Prüfung hat das dann als ungültig verworfen, ohne dass für den Besucher ein Fehler sichtbar wurde.
+
+**Betroffen:**
+
+| Seite | Script-Datei |
+|-------|-------------|
+| `/empfehlung-direkt/` | [`scripts/empfehlung-direkt.js`](./scripts/empfehlung-direkt.js) |
+| `/unverbindliche-anfrage/` | [`scripts/unverbindliche-anfrage.js`](./scripts/unverbindliche-anfrage.js) |
+
+## Was zu tun ist
+
+Bitte auf beiden Seiten den bestehenden Custom-HTML-Block (den mit dem `<script>`-Tag, der das
+Zoho-Formular per iFrame einbindet) durch den kompletten Inhalt der oben verlinkten Datei
+ersetzen. Es ändert sich inhaltlich **nur eine Zeile** in der bestehenden Logik (wie die REF-ID
+aus dem URL-Fragment gelesen wird), der Rest der Datei ist unverändert zur bisherigen Version.
+
+**Dringlichkeit:** Wir haben aktuell eine laufende E-Mail-Kampagne an unsere CRM-Kontakte raus, bei
+der ein Button direkt auf `/empfehlung-direkt/` mit genau dieser Art von URL zeigt. Eine zeitnahe
+Umsetzung wäre daher sehr hilfreich.
 
 ---
 
